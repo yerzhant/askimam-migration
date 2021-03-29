@@ -5,5 +5,7 @@ spring:
     password: ${db-password}
   jpa:
     database: mysql
+    hibernate:
+      ddl-auto: create
   output:
     ansi.enabled: always
