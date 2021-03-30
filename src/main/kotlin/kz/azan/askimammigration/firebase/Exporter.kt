@@ -2,6 +2,7 @@ package kz.azan.askimammigration.firebase
 
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.cloud.firestore.Firestore
+import com.google.cloud.firestore.Query
 import com.google.cloud.firestore.QueryDocumentSnapshot
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -33,13 +34,15 @@ class Exporter(private val importer: Importer) {
     }
 
     fun copyAll() {
-        println("Copying Topics...")
-        extractCollectionTo(topics, importer::saveTopic)
-//        extractCollectionTo(topics, importer::saveMessage)
+//        println("Copying Topics...")
+//        extractCollectionTo(topics, importer::saveTopic)
+
+        println("Copying Messages...")
+        extractCollectionTo(messages, importer::saveMessage)
     }
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {
-        db.collection(collection).limit(1).get().get().run {
+        db.collection(collection).limit(100).get().get().run {
             documents.forEach {
                 saver.accept(it)
             }
