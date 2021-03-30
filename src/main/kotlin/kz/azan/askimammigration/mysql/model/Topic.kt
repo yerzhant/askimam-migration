@@ -1,10 +1,8 @@
 package kz.azan.askimammigration.mysql.model
 
 import com.google.cloud.firestore.QueryDocumentSnapshot
-import kz.azan.askimammigration.common.type.ext.toNano
-import kz.azan.askimammigration.common.type.ext.toSeconds
+import kz.azan.askimammigration.common.converter.toLocalDateTime
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
@@ -13,7 +11,7 @@ import javax.persistence.Table
 @Table(name = "fb_topics")
 data class Topic(
     @Id
-    val id: String?,
+    val id: String,
     val name: String?,
 
     val uid: String?,
@@ -49,10 +47,5 @@ data class Topic(
             modifiedOn = toLocalDateTime(doc.getLong("modifiedOn")),
             imamViewedOn = toLocalDateTime(doc.getLong("imamViewedOn")),
         )
-
-        private fun toLocalDateTime(timestamp: Long?) =
-            timestamp?.run {
-                LocalDateTime.ofEpochSecond(timestamp.toSeconds(), timestamp.toNano(), ZoneOffset.ofHours(6))
-            }
     }
 }
