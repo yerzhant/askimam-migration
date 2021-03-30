@@ -1,6 +1,7 @@
 package kz.azan.askimammigration
 
 import kz.azan.askimammigration.firebase.Exporter
+import kz.azan.askimammigration.mysql.Importer
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -8,10 +9,12 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class AskimamMigrationApplication(
     private val exporter: Exporter,
+    private val importer: Importer,
 ) : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-        exporter.transfer()
+//        importer.cleanup()
+        exporter.copyAll()
     }
 }
 

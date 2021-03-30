@@ -10,7 +10,6 @@ import kz.azan.askimammigration.mysql.Importer
 import org.springframework.stereotype.Service
 import java.io.FileInputStream
 import java.util.function.Consumer
-import javax.annotation.PostConstruct
 
 @Service
 class Exporter(private val importer: Importer) {
@@ -21,8 +20,7 @@ class Exporter(private val importer: Importer) {
 
     private lateinit var db: Firestore
 
-    @PostConstruct
-    fun init() {
+    init {
         FileInputStream("google/azan-kz-ask-imam-firebase-adminsdk.json").use {
             val credentials = GoogleCredentials.fromStream(it)
             val options = FirebaseOptions.builder()
@@ -34,15 +32,14 @@ class Exporter(private val importer: Importer) {
         db = FirestoreClient.getFirestore()
     }
 
-    fun transfer() {
-        importer.cleanup()
-
+    fun copyAll() {
+        println("Copying Topics...")
         extractCollectionTo(topics, importer::saveTopic)
 //        extractCollectionTo(topics, importer::saveMessage)
     }
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {
-        db.collection(collection).get().get().run {
+        db.collection(collection).limit(1).get().get().run {
             documents.forEach {
                 saver.accept(it)
             }
