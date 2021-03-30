@@ -1,11 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://db:3306/azan_kz
+    url: jdbc:mysql://db:3306/azan_kz?characterEncoding=UTF-8
     username: ${db-username}
     password: ${db-password}
   jpa:
     database: mysql
-    hibernate:
-      ddl-auto: create
   output:
     ansi.enabled: always
