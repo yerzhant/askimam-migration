@@ -1,6 +1,6 @@
 package kz.azan.askimammigration
 
-import kz.azan.askimammigration.firebase.Exporter
+import kz.azan.askimammigration.exporter.Exporter
 import kz.azan.askimammigration.importer.Importer
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
