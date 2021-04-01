@@ -8,6 +8,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.cloud.FirestoreClient
 import kz.azan.askimammigration.mysql.Importer
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.io.FileInputStream
 import java.util.function.Consumer
@@ -20,6 +21,8 @@ class Exporter(private val importer: Importer) {
     private val favorites = "testFavorites"
 
     private lateinit var db: Firestore
+
+    private val logger  = LoggerFactory.getLogger(javaClass)
 
     init {
         FileInputStream("google/azan-kz-ask-imam-firebase-adminsdk.json").use {
@@ -34,11 +37,14 @@ class Exporter(private val importer: Importer) {
     }
 
     fun copyAll() {
-//        println("Copying Topics...")
+//        logger.info("Copying Topics...")
 //        extractCollectionTo(topics, importer::saveTopic)
 
-        println("Copying Messages...")
-        extractCollectionTo(messages, importer::saveMessage)
+//        logger.info("Copying Messages...")
+//        extractCollectionTo(messages, importer::saveMessage)
+
+        logger.info("Copying Favorites...")
+        extractCollectionTo(favorites, importer::saveFavorite)
     }
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {
