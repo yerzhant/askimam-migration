@@ -1,7 +1,7 @@
-package kz.azan.askimammigration.mysql
+package kz.azan.askimammigration.importer
 
 import com.google.cloud.firestore.QueryDocumentSnapshot
-import kz.azan.askimammigration.mysql.model.*
+import kz.azan.askimammigration.importer.model.*
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 

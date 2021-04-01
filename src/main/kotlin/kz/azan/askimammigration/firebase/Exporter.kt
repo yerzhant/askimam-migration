@@ -2,12 +2,11 @@ package kz.azan.askimammigration.firebase
 
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.cloud.firestore.Firestore
-import com.google.cloud.firestore.Query
 import com.google.cloud.firestore.QueryDocumentSnapshot
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.cloud.FirestoreClient
-import kz.azan.askimammigration.mysql.Importer
+import kz.azan.askimammigration.importer.Importer
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.io.FileInputStream

@@ -1,7 +1,7 @@
 package kz.azan.askimammigration
 
 import kz.azan.askimammigration.firebase.Exporter
-import kz.azan.askimammigration.mysql.Importer
+import kz.azan.askimammigration.importer.Importer
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,4 +1,4 @@
-package kz.azan.askimammigration.mysql.model
+package kz.azan.askimammigration.importer.model
 
 import com.google.cloud.firestore.QueryDocumentSnapshot
 import kz.azan.askimammigration.common.converter.toLocalDateTime

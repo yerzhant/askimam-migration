@@ -1,4 +1,4 @@
-package kz.azan.askimammigration.mysql.model
+package kz.azan.askimammigration.importer.model
 
 import org.springframework.data.repository.CrudRepository
 
