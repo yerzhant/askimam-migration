@@ -16,10 +16,10 @@ import java.util.function.Consumer
 @Service
 class Exporter(private val importer: Importer) {
 
-    private val topics = "testTopics"
-    private val messages = "testMessages"
-    private val favorites = "testFavorites"
-    private val profiles = "testProfiles"
+    private val topics = "topics"
+    private val messages = "messages"
+    private val favorites = "favorites"
+    private val profiles = "profiles"
 
     private lateinit var db: Firestore
 
@@ -47,12 +47,12 @@ class Exporter(private val importer: Importer) {
 //        logger.info("Copying Favorites...")
 //        extractCollectionTo(favorites, importer::saveFavorite)
 
-        logger.info("Copying Profiles...")
-        extractCollectionTo(profiles, importer::saveProfile)
+//        logger.info("Copying Profiles...")
+//        extractCollectionTo(profiles, importer::saveProfile)
     }
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {
-        db.collection(collection).limit(100).get().get().run {
+        db.collection(collection).get().get().run {
             documents.forEach {
                 saver.accept(it)
             }

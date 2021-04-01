@@ -28,17 +28,17 @@ data class Message(
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Message(
             id = doc.id,
-            topicId = doc.getString("topicId"),
+            topicId = doc.getString("topicId") ?: "XXX",
 
-            uid = doc.getString("uid"),
-            sender = doc.getString("sender"),
+            uid = doc.getString("uid") ?: "XXX",
+            sender = doc.getString("sender") ?: "X",
             senderName = doc.getString("senderName"),
 
             text = doc.getString("text"),
             audioUrl = doc.getString("audioUrl"),
             duration = doc.getString("duration"),
 
-            createdOn = toLocalDateTime(doc.getLong("createdOn")),
+            createdOn = toLocalDateTime(doc.getLong("createdOn")) ?: LocalDateTime.of(2019, 1, 1, 0, 0),
             editedOn = toLocalDateTime(doc.getLong("editedOn")),
         )
     }

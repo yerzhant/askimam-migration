@@ -31,20 +31,20 @@ data class Topic(
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Topic(
             id = doc.id,
-            name = doc.getString("name"),
+            name = doc.getString("name") ?: "XXX",
 
-            uid = doc.getString("uid"),
+            uid = doc.getString("uid") ?: "XXX",
             imamUid = doc.getString("imamUid"),
 
-            isPublic = doc.getBoolean("isPublic"),
+            isPublic = doc.getBoolean("isPublic") ?: false,
             isAnswered = doc.getBoolean("isAnswered"),
 
-            fcmToken = doc.getString("fcmToken"),
+            fcmToken = doc.getString("fcmToken") ?: "XXX",
             imamFcmToken = doc.getString("imamFcmToken"),
 
-            viewedOn = toLocalDateTime(doc.getLong("viewedOn")),
-            createdOn = toLocalDateTime(doc.getLong("createdOn")),
-            modifiedOn = toLocalDateTime(doc.getLong("modifiedOn")),
+            viewedOn = toLocalDateTime(doc.getLong("viewedOn")) ?: LocalDateTime.of(2019, 1, 1, 0, 0),
+            createdOn = toLocalDateTime(doc.getLong("createdOn")) ?: LocalDateTime.of(2019, 1, 1, 0, 0),
+            modifiedOn = toLocalDateTime(doc.getLong("modifiedOn")) ?: LocalDateTime.of(2019, 1, 1, 0, 0),
             imamViewedOn = toLocalDateTime(doc.getLong("imamViewedOn")),
         )
     }

@@ -36,7 +36,9 @@ class Importer(
 
     fun cleanup() {
         logger.info("Cleaning up...")
-        topicRepository.deleteAll()
-        messageRepository.deleteAll()
+//        topicRepository.deleteAll()
+//        messageRepository.deleteAll()
+//        favoriteRepository.deleteAll()
+//        profileRepository.deleteAll()
     }
 }

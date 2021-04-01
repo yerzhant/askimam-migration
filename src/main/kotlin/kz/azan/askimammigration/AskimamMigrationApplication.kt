@@ -13,7 +13,7 @@ class AskimamMigrationApplication(
 ) : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-//        importer.cleanup()
+        importer.cleanup()
 
         exporter.copyAll()
     }
