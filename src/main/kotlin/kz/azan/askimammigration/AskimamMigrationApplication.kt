@@ -15,7 +15,10 @@ class AskimamMigrationApplication(
     override fun run(vararg args: String?) {
         importer.cleanup()
 
-        exporter.copyAll()
+//        exporter.copyTopics()
+//        exporter.copyMessages()
+//        exporter.copyFavorites()
+//        exporter.copyProfiles()
     }
 }
 

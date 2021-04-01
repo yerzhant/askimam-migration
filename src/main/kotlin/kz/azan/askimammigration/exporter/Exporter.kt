@@ -9,6 +9,7 @@ import com.google.firebase.cloud.FirestoreClient
 import kz.azan.askimammigration.importer.Importer
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.io.FileInputStream
 import java.util.function.Consumer
 
@@ -22,7 +23,7 @@ class Exporter(private val importer: Importer) {
 
     private lateinit var db: Firestore
 
-    private val logger  = LoggerFactory.getLogger(javaClass)
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     init {
         FileInputStream("google/azan-kz-ask-imam-firebase-adminsdk.json").use {
@@ -36,18 +37,28 @@ class Exporter(private val importer: Importer) {
         db = FirestoreClient.getFirestore()
     }
 
-    fun copyAll() {
-//        logger.info("Copying Topics...")
-//        extractCollectionTo(topics, importer::saveTopic)
+    @Transactional
+    fun copyTopics() {
+        logger.info("Copying Topics...")
+        extractCollectionTo(topics, importer::saveTopic)
+    }
 
-//        logger.info("Copying Messages...")
-//        extractCollectionTo(messages, importer::saveMessage)
+    @Transactional
+    fun copyMessages() {
+        logger.info("Copying Messages...")
+        extractCollectionTo(messages, importer::saveMessage)
+    }
 
-//        logger.info("Copying Favorites...")
-//        extractCollectionTo(favorites, importer::saveFavorite)
+    @Transactional
+    fun copyFavorites() {
+        logger.info("Copying Favorites...")
+        extractCollectionTo(favorites, importer::saveFavorite)
+    }
 
-//        logger.info("Copying Profiles...")
-//        extractCollectionTo(profiles, importer::saveProfile)
+    @Transactional
+    fun copyProfiles() {
+        logger.info("Copying Profiles...")
+        extractCollectionTo(profiles, importer::saveProfile)
     }
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {
