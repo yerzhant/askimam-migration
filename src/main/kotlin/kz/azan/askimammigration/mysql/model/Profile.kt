@@ -10,6 +10,7 @@ import javax.persistence.Table
 data class Profile(
     @Id
     val id: String,
+    val uid: String?,
     val login: String?,
     val timezone: Int?,
 ) {
@@ -17,6 +18,7 @@ data class Profile(
         fun from(doc: QueryDocumentSnapshot) = Profile(
             id = doc.id,
             login = doc.getString("login"),
+            uid = doc.getString("uid"),
             timezone = doc.getLong("timezone")?.toInt(),
         )
     }
