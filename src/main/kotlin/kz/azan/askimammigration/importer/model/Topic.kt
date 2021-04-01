@@ -12,20 +12,20 @@ import javax.persistence.Table
 data class Topic(
     @Id
     val id: String,
-    val name: String?,
+    val name: String,
 
-    val uid: String?,
+    val uid: String,
     val imamUid: String?,
 
-    val isPublic: Boolean?,
+    val isPublic: Boolean,
     val isAnswered: Boolean?,
 
-    val fcmToken: String?,
+    val fcmToken: String,
     val imamFcmToken: String?,
 
-    val viewedOn: LocalDateTime?,
-    val createdOn: LocalDateTime?,
-    val modifiedOn: LocalDateTime?,
+    val viewedOn: LocalDateTime,
+    val createdOn: LocalDateTime,
+    val modifiedOn: LocalDateTime,
     val imamViewedOn: LocalDateTime?,
 ) {
     companion object {

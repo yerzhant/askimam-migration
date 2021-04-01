@@ -13,6 +13,7 @@ data class Profile(
     val uid: String?,
     val login: String?,
     val timezone: Int?,
+    var userId: Int? = null,
 ) {
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Profile(
