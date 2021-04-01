@@ -24,7 +24,7 @@ class Importer(
     }
 
     fun cleanup() {
-        println("Cleaning up...")
+//        println("Cleaning up...")
 //        topicRepository.deleteAll()
 //        messageRepository.deleteAll()
     }

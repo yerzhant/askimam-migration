@@ -16,9 +16,11 @@ data class Message(
 
     val uid: String?,
     val sender: String?,
+    val senderName: String?,
 
     val text: String?,
     val audioUrl: String?,
+    val duration: String?,
 
     val createdOn: LocalDateTime?,
     val editedOn: LocalDateTime?,
@@ -30,9 +32,11 @@ data class Message(
 
             uid = doc.getString("uid"),
             sender = doc.getString("sender"),
+            senderName = doc.getString("senderName"),
 
             text = doc.getString("text"),
             audioUrl = doc.getString("audioUrl"),
+            duration = doc.getString("duration"),
 
             createdOn = toLocalDateTime(doc.getLong("createdOn")),
             editedOn = toLocalDateTime(doc.getLong("editedOn")),
