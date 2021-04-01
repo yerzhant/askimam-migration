@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
+const val anonymousUserId = -1
+
 @SpringBootApplication
 class AskimamMigrationApplication(
     private val exporter: Exporter,
