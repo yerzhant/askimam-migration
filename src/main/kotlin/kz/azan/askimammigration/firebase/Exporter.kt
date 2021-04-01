@@ -19,6 +19,7 @@ class Exporter(private val importer: Importer) {
     private val topics = "testTopics"
     private val messages = "testMessages"
     private val favorites = "testFavorites"
+    private val profiles = "testProfiles"
 
     private lateinit var db: Firestore
 
@@ -43,8 +44,11 @@ class Exporter(private val importer: Importer) {
 //        logger.info("Copying Messages...")
 //        extractCollectionTo(messages, importer::saveMessage)
 
-        logger.info("Copying Favorites...")
-        extractCollectionTo(favorites, importer::saveFavorite)
+//        logger.info("Copying Favorites...")
+//        extractCollectionTo(favorites, importer::saveFavorite)
+
+        logger.info("Copying Profiles...")
+        extractCollectionTo(profiles, importer::saveProfile)
     }
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {

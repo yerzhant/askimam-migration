@@ -10,6 +10,7 @@ class Importer(
     private val topicRepository: TopicRepository,
     private val messageRepository: MessageRepository,
     private val favoriteRepository: FavoriteRepository,
+    private val profileRepository: ProfileRepository,
 ) {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -28,9 +29,14 @@ class Importer(
         favoriteRepository.save(favorite)
     }
 
+    fun saveProfile(doc: QueryDocumentSnapshot) {
+        val profile = Profile.from(doc)
+        profileRepository.save(profile)
+    }
+
     fun cleanup() {
-//        logger.info("Cleaning up...")
-//        topicRepository.deleteAll()
-//        messageRepository.deleteAll()
+        logger.info("Cleaning up...")
+        topicRepository.deleteAll()
+        messageRepository.deleteAll()
     }
 }
