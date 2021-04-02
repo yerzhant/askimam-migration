@@ -3,6 +3,11 @@ select distinct imam_uid from fb_topics where imam_uid not in (select id from fb
 
 select distinct sender_name from fb_messages where replace(sender_name, '\n', '') not in (select name from fb_imams) order by 1;
 
+select * from fb_profiles where login not in (select username from users);
+
+select * from fb_topics where chat_id is null;
+
+
 -- Helpers
 select distinct sender_name, imam_uid
   from fb_messages m
@@ -10,7 +15,7 @@ select distinct sender_name, imam_uid
  -- where imam_uid is not null and sender_name is not null
  order by 1, 2;
 
-select * from fb_profiles where login not in (select username from users);
+select * from fb_messages where topic_id not in (select id from fb_topics);
 
 select * from fb_topics;
 select * from fb_messages;

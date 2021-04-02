@@ -12,18 +12,20 @@ import javax.persistence.Table
 data class Message(
     @Id
     val id: String,
-    val topicId: String?,
+    val topicId: String,
 
-    val uid: String?,
-    val sender: String?,
+    val uid: String,
+    val sender: String,
     val senderName: String?,
 
-    val text: String?,
+    val text: String,
     val audioUrl: String?,
     val duration: String?,
 
-    val createdOn: LocalDateTime?,
+    val createdOn: LocalDateTime,
     val editedOn: LocalDateTime?,
+
+    var messageId: Long? = null,
 ) {
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Message(
@@ -34,7 +36,7 @@ data class Message(
             sender = doc.getString("sender") ?: "X",
             senderName = doc.getString("senderName"),
 
-            text = doc.getString("text"),
+            text = doc.getString("text")!!,
             audioUrl = doc.getString("audioUrl"),
             duration = doc.getString("duration"),
 

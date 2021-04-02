@@ -3,6 +3,7 @@ package kz.azan.askimammigration
 import kz.azan.askimammigration.exporter.Exporter
 import kz.azan.askimammigration.importer.Importer
 import kz.azan.askimammigration.migrator.Migrator
+import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -16,7 +17,11 @@ class AskimamMigrationApplication(
     private val migrator: Migrator,
 ) : CommandLineRunner {
 
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     override fun run(vararg args: String?) {
+        logger.info("Started")
+
         importer.cleanup()
 
 //        exporter.copyTopics()
@@ -24,10 +29,14 @@ class AskimamMigrationApplication(
 //        exporter.copyFavorites()
 //        exporter.copyProfiles()
 
+
         migrator.cleanup()
 
 //        migrator.fillUserIdsInProfiles()
-        migrator.migrateChats()
+//        migrator.migrateChats()
+        migrator.migrateMessages()
+
+        logger.info("Finished")
     }
 }
 

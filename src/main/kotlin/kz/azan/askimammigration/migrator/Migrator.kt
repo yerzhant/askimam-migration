@@ -46,8 +46,22 @@ class Migrator(
         }
     }
 
+//    @Transactional
+    fun migrateMessages() {
+        logger.info("Migrating messages...")
+
+        messageRepository.findAll().forEach {
+            ChatMessage.from(it, imamRepository, profileRepository, topicRepository)?.let { chatMessage ->
+                chatMessageRepository.save(chatMessage).run {
+                    it.messageId = id
+                    messageRepository.save(it)
+                }
+            }
+        }
+    }
+
     fun cleanup() {
         logger.info("[Migration] Cleaning up...")
-        chatRepository.deleteAll()
+//        chatRepository.deleteAll()
     }
 }
