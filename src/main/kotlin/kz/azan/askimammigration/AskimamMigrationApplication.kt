@@ -35,7 +35,8 @@ class AskimamMigrationApplication(
 //        migrator.fillUserIdsInProfiles()
 //        migrator.migrateChats()
 //        migrator.migrateMessages()
-        migrator.migrateFavorites()
+//        migrator.migrateFavorites()
+        migrator.downloadAudios()
 
         logger.info("Finished")
     }

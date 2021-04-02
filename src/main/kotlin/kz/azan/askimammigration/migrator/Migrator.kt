@@ -8,6 +8,9 @@ import kz.azan.askimammigration.migrator.model.*
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.io.FileOutputStream
+import java.net.URL
+import java.util.*
 
 @Service
 class Migrator(
@@ -21,6 +24,8 @@ class Migrator(
     private val chatFavoriteRepository: ChatFavoriteRepository,
     private val userRepository: UserRepository,
 ) {
+    private val mp3Directory = "/tmp/audio"
+
     private val logger = LoggerFactory.getLogger(javaClass)
 
     @Transactional
@@ -46,7 +51,7 @@ class Migrator(
         }
     }
 
-//    @Transactional
+    //    @Transactional
     fun migrateMessages() {
         logger.info("Migrating messages...")
 
@@ -70,6 +75,23 @@ class Migrator(
                     it.favoriteId = id
                     favoriteRepository.save(it)
                 }
+            }
+        }
+    }
+
+    @Transactional
+    fun downloadAudios() {
+        logger.info("Downloading audios...")
+
+        chatMessageRepository.findAll().filter { it.audio?.startsWith("https") ?: false }.forEach { message ->
+            URL(message.audio).openStream().use { input ->
+                val uuid = UUID.randomUUID()
+                val fileName = "audio-$uuid.mp3"
+
+                FileOutputStream("$mp3Directory/$fileName").use { input.copyTo(it) }
+
+                message.audio = fileName
+                chatMessageRepository.save(message)
             }
         }
     }

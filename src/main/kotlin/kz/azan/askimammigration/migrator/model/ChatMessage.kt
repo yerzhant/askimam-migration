@@ -25,7 +25,7 @@ data class ChatMessage(
     val type: Type,
     val text: String,
 
-    val audio: String?,
+    var audio: String?,
     val duration: String?,
 
     val authorId: Int,
