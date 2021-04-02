@@ -17,14 +17,17 @@ class AskimamMigrationApplication(
 ) : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-//        importer.cleanup()
+        importer.cleanup()
 
 //        exporter.copyTopics()
 //        exporter.copyMessages()
 //        exporter.copyFavorites()
 //        exporter.copyProfiles()
 
-        migrator.fillUserIdsInProfiles()
+        migrator.cleanup()
+
+//        migrator.fillUserIdsInProfiles()
+        migrator.migrateChats()
     }
 }
 

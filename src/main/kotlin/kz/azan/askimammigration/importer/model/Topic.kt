@@ -27,6 +27,8 @@ data class Topic(
     val createdOn: LocalDateTime,
     val modifiedOn: LocalDateTime,
     val imamViewedOn: LocalDateTime?,
+
+    var chatId: Long? = null,
 ) {
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Topic(

@@ -25,7 +25,7 @@ class Migrator(
 
     @Transactional
     fun fillUserIdsInProfiles() {
-        logger.info("Filling up user ids in profiles")
+        logger.info("Filling up user ids in profiles...")
 
         profileRepository.findAll().forEach {
             it.userId = userRepository.findByUsername(it.login).id
@@ -35,8 +35,19 @@ class Migrator(
 
     @Transactional
     fun migrateChats() {
+        logger.info("Migrating chats...")
+
         topicRepository.findAll().forEach {
-//            Chat.from
+            val chat = Chat.from(it, profileRepository, imamRepository)
+            chatRepository.save(chat).run {
+                it.chatId = id
+                topicRepository.save(it)
+            }
         }
+    }
+
+    fun cleanup() {
+        logger.info("[Migration] Cleaning up...")
+        chatRepository.deleteAll()
     }
 }
