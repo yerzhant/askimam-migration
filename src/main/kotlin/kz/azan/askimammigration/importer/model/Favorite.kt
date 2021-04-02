@@ -12,22 +12,24 @@ import javax.persistence.Table
 data class Favorite(
     @Id
     val id: String,
-    val createdOn: LocalDateTime?,
+    val createdOn: LocalDateTime,
 
-    val uid: String?,
+    val uid: String,
 
-    val topicId: String?,
-    val topicName: String?,
+    val topicId: String,
+    val topicName: String,
+
+    var favoriteId: Long? = null,
 ) {
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Favorite(
             id = doc.id,
-            createdOn = toLocalDateTime(doc.getLong("createdOn")),
+            createdOn = toLocalDateTime(doc.getLong("createdOn"))!!,
 
-            uid = doc.getString("uid"),
+            uid = doc.getString("uid")!!,
 
-            topicId = doc.getString("topicId"),
-            topicName = doc.getString("topicName"),
+            topicId = doc.getString("topicId")!!,
+            topicName = doc.getString("topicName")!!,
         )
     }
 }

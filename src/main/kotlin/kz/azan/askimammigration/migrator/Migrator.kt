@@ -60,6 +60,20 @@ class Migrator(
         }
     }
 
+    @Transactional
+    fun migrateFavorites() {
+        logger.info("Migrating favorites...")
+
+        favoriteRepository.findAll().forEach {
+            ChatFavorite.from(it, profileRepository, topicRepository)?.run {
+                chatFavoriteRepository.save(this).run {
+                    it.favoriteId = id
+                    favoriteRepository.save(it)
+                }
+            }
+        }
+    }
+
     fun cleanup() {
         logger.info("[Migration] Cleaning up...")
 //        chatRepository.deleteAll()
