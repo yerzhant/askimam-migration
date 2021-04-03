@@ -8,6 +8,7 @@ import kz.azan.askimammigration.migrator.model.*
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
 import java.util.*
@@ -82,8 +83,9 @@ class Migrator(
     @Transactional
     fun downloadAudios() {
         logger.info("Downloading audios...")
+        File(mp3Directory).mkdir()
 
-        chatMessageRepository.findAll().filter { it.audio?.startsWith("https") ?: false }.forEach { message ->
+        chatMessageRepository.findByAudioStartingWith("https").forEach { message ->
             URL(message.audio).openStream().use { input ->
                 val uuid = UUID.randomUUID()
                 val fileName = "audio-$uuid.mp3"
@@ -97,7 +99,9 @@ class Migrator(
     }
 
     fun cleanup() {
-        logger.info("[Migration] Cleaning up...")
+//        logger.info("[Migration] Cleaning up...")
+//        File(mp3Directory).deleteRecursively()
+//        chatMessageRepository.deleteAll()
 //        chatRepository.deleteAll()
     }
 }
