@@ -27,7 +27,6 @@ data class ChatFavorite(
             profileRepository: ProfileRepository,
             topicRepository: TopicRepository,
         ) = profileRepository.findByIdOrNull(favorite.uid)?.run {
-
             ChatFavorite(
                 userId = userId!!,
                 chatId = topicRepository.findByIdOrNull(favorite.topicId)?.chatId!!,

@@ -7,7 +7,6 @@ import kz.azan.askimammigration.importer.model.TopicRepository
 import kz.azan.askimammigration.migrator.model.*
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
@@ -29,7 +28,6 @@ class Migrator(
 
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    @Transactional
     fun fillUserIdsInProfiles() {
         logger.info("Filling up user ids in profiles...")
 
@@ -39,7 +37,6 @@ class Migrator(
         }
     }
 
-    @Transactional
     fun migrateChats() {
         logger.info("Migrating chats...")
 
@@ -52,7 +49,6 @@ class Migrator(
         }
     }
 
-    //    @Transactional
     fun migrateMessages() {
         logger.info("Migrating messages...")
 
@@ -66,7 +62,6 @@ class Migrator(
         }
     }
 
-    @Transactional
     fun migrateFavorites() {
         logger.info("Migrating favorites...")
 
@@ -80,7 +75,6 @@ class Migrator(
         }
     }
 
-    @Transactional
     fun downloadAudios() {
         logger.info("Downloading audios...")
         File(mp3Directory).mkdir()
@@ -99,9 +93,9 @@ class Migrator(
     }
 
     fun cleanup() {
-//        logger.info("[Migration] Cleaning up...")
-//        File(mp3Directory).deleteRecursively()
-//        chatMessageRepository.deleteAll()
-//        chatRepository.deleteAll()
+        logger.info("[Migration] Cleaning up...")
+        File(mp3Directory).deleteRecursively()
+        chatMessageRepository.deleteAll()
+        chatRepository.deleteAll()
     }
 }

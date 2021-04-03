@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Import" type="JetRunConfigurationType">
+  <configuration default="false" name="Migrate" type="JetRunConfigurationType">
     <module name="askimam-migration.main" />
     <option name="VM_PARAMETERS" value="" />
-    <option name="PROGRAM_PARAMETERS" value="import" />
+    <option name="PROGRAM_PARAMETERS" value="migrate" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="PASS_PARENT_ENVS" value="true" />

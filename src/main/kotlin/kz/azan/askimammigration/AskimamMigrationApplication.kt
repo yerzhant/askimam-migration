@@ -22,21 +22,26 @@ class AskimamMigrationApplication(
     override fun run(vararg args: String?) {
         logger.info("Started")
 
-        importer.cleanup()
+        if (args[0] == "import") {
+            logger.info("Importing...")
 
-//        exporter.copyTopics()
-//        exporter.copyMessages()
-//        exporter.copyFavorites()
-//        exporter.copyProfiles()
+            importer.cleanup()
+            exporter.copyTopics()
+            exporter.copyMessages()
+            exporter.copyFavorites()
+            exporter.copyProfiles()
+        }
 
+        if (args[0] == "migrate") {
+            logger.info("Migrating...")
 
-        migrator.cleanup()
-
-//        migrator.fillUserIdsInProfiles()
-//        migrator.migrateChats()
-//        migrator.migrateMessages()
-//        migrator.migrateFavorites()
-        migrator.downloadAudios()
+            migrator.cleanup()
+            migrator.fillUserIdsInProfiles()
+            migrator.migrateChats()
+            migrator.migrateMessages()
+            migrator.migrateFavorites()
+            migrator.downloadAudios()
+        }
 
         logger.info("Finished")
     }

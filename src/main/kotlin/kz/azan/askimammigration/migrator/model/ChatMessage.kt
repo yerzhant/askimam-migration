@@ -66,7 +66,8 @@ data class ChatMessage(
             imamRepository: ImamRepository,
             profileRepository: ProfileRepository,
         ) = if (message.sender == "i") {
-            if (message.senderName == null) anonymousUserId
+            if (message.senderName == null)
+                anonymousUserId
             else
                 imamRepository.findFirstByName(message.senderName.trim()).userId
         } else {
