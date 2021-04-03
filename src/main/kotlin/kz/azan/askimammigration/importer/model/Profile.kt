@@ -11,14 +11,12 @@ data class Profile(
     @Id
     val id: String,
     val login: String?,
-    val timezone: Int?,
     var userId: Int? = null,
 ) {
     companion object {
         fun from(doc: QueryDocumentSnapshot) = Profile(
             id = doc.id,
             login = doc.getString("login"),
-            timezone = doc.getLong("timezone")?.toInt(),
         )
     }
 }
