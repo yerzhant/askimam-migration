@@ -1,9 +1,9 @@
-insert into users(id, username, first_name, last_name, email) values (-1, 'unknown@user', 'Unknown', 'User', 'unknown@user');
+insert into users(id, username, first_name, last_name, email, password_hash) values (-1, 'unknown@user', 'Unknown', 'User', 'unknown@user', 'xxx');
 
-insert into users(id, username, first_name, last_name, email) values (-2, 'unknown2@user', 'Ұстаз', 'Жанболат', 'unknown@user');
-insert into users(id, username, first_name, last_name, email) values (-3, 'unknown3@user', 'Ұстаз Руслан', 'Қайыргелді', 'unknown@user');
-insert into users(id, username, first_name, last_name, email) values (-4, 'unknown4@user', 'Ұстаз Серік', 'Ахметов', 'unknown@user');
-insert into users(id, username, first_name, last_name, email) values (-5, 'unknown5@user', 'Әскен', 'ұстаз', 'unknown@user');
+insert into users(id, username, first_name, last_name, email, password_hash) values (-2, 'unknown2@user', 'Ұстаз', 'Жанболат', 'unknown@user', 'xxx');
+insert into users(id, username, first_name, last_name, email, password_hash) values (-3, 'unknown3@user', 'Ұстаз Руслан', 'Қайыргелді', 'unknown@user', 'xxx');
+insert into users(id, username, first_name, last_name, email, password_hash) values (-4, 'unknown4@user', 'Ұстаз Серік', 'Ахметов', 'unknown@user', 'xxx');
+insert into users(id, username, first_name, last_name, email, password_hash) values (-5, 'unknown5@user', 'Әскен', 'ұстаз', 'unknown@user', 'xxx');
 
 
 insert into fb_imams(name, id, user_id) values ('Жанболат ұстаз', 'VQAct3b67AM6iEpXJ4alQJuDoVE2', -2);
