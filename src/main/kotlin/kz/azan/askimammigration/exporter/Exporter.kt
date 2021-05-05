@@ -61,9 +61,11 @@ class Exporter(private val importer: Importer) {
 
     private fun extractCollectionTo(collection: String, saver: Consumer<QueryDocumentSnapshot>) {
         db.collection(collection).get().get().run {
-            documents.forEach {
-                saver.accept(it)
-            }
+            documents
+                .parallelStream()
+                .forEach {
+                    saver.accept(it)
+                }
         }
     }
 }
