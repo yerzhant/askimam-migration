@@ -21,18 +21,16 @@ class Exporter(private val importer: Importer) {
     private val favorites = "favorites"
     private val profiles = "profiles"
 
-    private lateinit var db: Firestore
+    private val db: Firestore
 
     private val logger = LoggerFactory.getLogger(javaClass)
 
     init {
-        FileInputStream("google/azan-kz-ask-imam-firebase-adminsdk.json").use {
-            val credentials = GoogleCredentials.fromStream(it)
-            val options = FirebaseOptions.builder()
-                .setCredentials(credentials)
-                .build()
-            FirebaseApp.initializeApp(options)
-        }
+        val options = FirebaseOptions.builder()
+            .setCredentials(GoogleCredentials.getApplicationDefault())
+            .build()
+
+        FirebaseApp.initializeApp(options)
 
         db = FirestoreClient.getFirestore()
     }

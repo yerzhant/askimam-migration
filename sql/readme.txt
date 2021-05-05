@@ -1,4 +1,4 @@
-- Set imam's user id (which are depicted by TODOs in add-imams.sql)
+- Set imams' user ids (which are depicted by TODOs in add-imams.sql)
 
 - Run add-imams.sql
 

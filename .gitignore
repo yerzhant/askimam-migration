@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 /src/main/resources/application-dev.yaml
-/google/azan-kz-ask-imam-firebase-adminsdk.json
+/google
 
 ### STS ###
 .apt_generated

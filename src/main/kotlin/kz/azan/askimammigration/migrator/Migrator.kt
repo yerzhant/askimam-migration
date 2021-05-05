@@ -24,7 +24,7 @@ class Migrator(
     private val chatFavoriteRepository: ChatFavoriteRepository,
     private val userRepository: UserRepository,
 ) {
-    private val mp3Directory = "/tmp/audio"
+    private val mp3Directory = "audio"
 
     private val logger = LoggerFactory.getLogger(javaClass)
 

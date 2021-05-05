@@ -10,6 +10,7 @@
     <option name="WORKING_DIRECTORY" value="" />
     <envs>
       <env name="spring_profiles_active" value="dev" />
+      <env name="GOOGLE_APPLICATION_CREDENTIALS" value="google/service-account.json" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
