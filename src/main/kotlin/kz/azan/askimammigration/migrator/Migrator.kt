@@ -11,6 +11,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
 import java.util.*
+import kotlin.streams.asStream
 
 @Service
 class Migrator(
@@ -42,26 +43,34 @@ class Migrator(
     fun migrateChats() {
         logger.info("Migrating chats...")
 
-        topicRepository.findAll().forEach {
-            val chat = Chat.from(it, profileRepository, imamRepository)
-            chatRepository.save(chat).run {
-                it.chatId = id
-                topicRepository.save(it)
+        topicRepository.findAll()
+            .asSequence()
+            .asStream()
+            .parallel()
+            .forEach {
+                val chat = Chat.from(it, profileRepository, imamRepository)
+                chatRepository.save(chat).run {
+                    it.chatId = id
+                    topicRepository.save(it)
+                }
             }
-        }
     }
 
     fun migrateMessages() {
         logger.info("Migrating messages...")
 
-        messageRepository.findAll().forEach {
-            ChatMessage.from(it, imamRepository, profileRepository, topicRepository)?.let { chatMessage ->
-                chatMessageRepository.save(chatMessage).run {
-                    it.messageId = id
-                    messageRepository.save(it)
+        messageRepository.findAll()
+            .asSequence()
+            .asStream()
+            .parallel()
+            .forEach {
+                ChatMessage.from(it, imamRepository, profileRepository, topicRepository)?.let { chatMessage ->
+                    chatMessageRepository.save(chatMessage).run {
+                        it.messageId = id
+                        messageRepository.save(it)
+                    }
                 }
             }
-        }
     }
 
     fun migrateFavorites() {
@@ -81,17 +90,19 @@ class Migrator(
         logger.info("Downloading audios...")
         File(mp3Directory).mkdir()
 
-        chatMessageRepository.findByAudioStartingWith("https").forEach { message ->
-            URL(message.audio).openStream().use { input ->
-                val uuid = UUID.randomUUID()
-                val fileName = "audio-$uuid.mp3"
+        chatMessageRepository.findByAudioStartingWith("https")
+            .parallelStream()
+            .forEach { message ->
+                URL(message.audio).openStream().use { input ->
+                    val uuid = UUID.randomUUID()
+                    val fileName = "audio-$uuid.mp3"
 
-                FileOutputStream("$mp3Directory/$fileName").use { input.copyTo(it) }
+                    FileOutputStream("$mp3Directory/$fileName").use { input.copyTo(it) }
 
-                message.audio = fileName
-                chatMessageRepository.save(message)
+                    message.audio = fileName
+                    chatMessageRepository.save(message)
+                }
             }
-        }
     }
 
     fun cleanup() {
