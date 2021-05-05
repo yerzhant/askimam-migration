@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 /src/main/resources/application-dev.yaml
 /google
+/audio
 
 ### STS ###
 .apt_generated

@@ -32,8 +32,10 @@ class Migrator(
         logger.info("Filling up user ids in profiles...")
 
         profileRepository.findAll().forEach {
-            it.userId = userRepository.findByUsername(it.login).id
-            profileRepository.save(it)
+            userRepository.findByUsername(it.login)?.run {
+                it.userId = id
+                profileRepository.save(it)
+            }
         }
     }
 
@@ -95,6 +97,11 @@ class Migrator(
     fun cleanup() {
         logger.info("[Migration] Cleaning up...")
         File(mp3Directory).deleteRecursively()
+        profileRepository.findAll().forEach {
+            it.userId = null
+            profileRepository.save(it)
+        }
+        chatFavoriteRepository.deleteAll()
         chatMessageRepository.deleteAll()
         chatRepository.deleteAll()
     }

@@ -26,12 +26,14 @@ data class ChatFavorite(
             favorite: Favorite,
             profileRepository: ProfileRepository,
             topicRepository: TopicRepository,
-        ) = profileRepository.findByIdOrNull(favorite.uid)?.run {
-            ChatFavorite(
-                userId = userId!!,
-                chatId = topicRepository.findByIdOrNull(favorite.topicId)?.chatId!!,
-                addedAt = favorite.createdOn,
-            )
+        ) = profileRepository.findByIdAndUserIdIsNotNull(favorite.uid)?.run {
+            topicRepository.findByIdOrNull(favorite.topicId)?.run {
+                ChatFavorite(
+                    userId = userId!!,
+                    chatId = chatId!!,
+                    addedAt = favorite.createdOn,
+                )
+            }
         }
     }
 }
