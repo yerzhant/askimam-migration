@@ -15,12 +15,12 @@ insert into fb_imams(name, id, user_id) values ('Устаз Руслан', 'Xrgr
 insert into fb_imams(name, id, user_id) values ('Ұстаз Руслан Қайыргелді', 'Xrgrp2ATt8SKe3XxkBOHkuQ3wkd2-XXX', -3);
 
 -- TODO: set ustaz's user id
-insert into fb_imams(name, id, user_id) values ('Устаз Азамат Абу Баязид', 'yTRINAXgw3c9Vhhqu7nZiyKAnHG3', 1);
+insert into fb_imams(name, id, user_id) values ('Устаз Азамат Абу Баязид', 'yTRINAXgw3c9Vhhqu7nZiyKAnHG3', 33938);
 
 insert into fb_imams(name, id, user_id) values ('Ұстаз Серік Ахметов', 'mmejtdoPcFMiIfoR4sNtD10WQc92', -4);
 insert into fb_imams(name, id, user_id) values ('Ұстаз Серік Ахметов', 'MWCwuqXV0RSLCaVzozxMyjAGIA63', -4);
 
 -- TODO: set ustaz's user id
-insert into fb_imams(name, id, user_id) values ('Ұстаз Тимур Алиев', 'QLcdDVktBTSDCyFezjP4zFNsixH3', 2);
+insert into fb_imams(name, id, user_id) values ('Ұстаз Тимур Алиев', 'QLcdDVktBTSDCyFezjP4zFNsixH3', 16515);
 
 insert into fb_imams(name, id, user_id) values ('Әскен ұстаз', 'gzewuO6reja7R2q804rUgJM1y6B2', -5);
