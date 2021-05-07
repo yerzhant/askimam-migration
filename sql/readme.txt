@@ -1,9 +1,37 @@
-- Set imams' user ids (which are depicted by TODOs in add-imams.sql)
+Pre-prod testing:
 
-- Run add-imams.sql
+- set imams' user ids (which are depicted by TODOs in add-imams.sql);
 
-- Run this app with 'import' first param
+- run add-imams.sql;
 
-- Run checks in checks.sql
+- run this app with 'import' first param;
 
-- If checks are ok, then exec the app with 'migrate' param
+- run checks in checks.sql;
+
+- if checks are ok, then exec the app with 'migrate' param.
+
+
+Preps:
+
+- create test user;
+
+- test apk;
+
+- upload app bundle;
+
+- update store presence stuff.
+
+
+Once the app is available:
+
+- update it on the device and check it;
+
+- block writes to FB db;
+
+- run import;
+
+- run checks in the head of checks.sql;
+
+- start migration;
+
+- add a message with a link to the new version.
