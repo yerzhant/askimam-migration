@@ -34,4 +34,6 @@ Once the app is available:
 
 - start migration;
 
-- add a message with a link to the new version.
+- add a message with a link to the new version;
+
+- rewrite privacy policy.
